@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 40px; text-align: center; }
+        .box { background: white; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 100px; margin-bottom: 15px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; resize: none;}
+        button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;}
+        button:hover { background-color: #0056b3; }
+        h2 { color: #333; }
+        .spam { color: #dc3545; font-weight: bold; font-size: 20px; }
+        .ham { color: #28a745; font-weight: bold; font-size: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>SMS Spam Classifier</h2>
+        <form method="POST">
+            <textarea name="message" placeholder="Type a message here to check if it's spam..." required>{{ message }}</textarea>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <br><br>
+            <div>
+                Result: 
+                <span class="{% if prediction == 'Spam' %}spam{% else %}ham{% endif %}">
+                    {{ prediction }}
+                </span>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
